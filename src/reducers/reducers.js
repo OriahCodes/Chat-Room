@@ -2,17 +2,17 @@ import { combineReducers } from 'redux'
 import db from '../config';
 import {
     SET_CURRENT_USER,
-    SET_USER_ID,
     LOGIN,
     LOGIN_ATTEMPT,
     LOGOUT,
     ADD_MESSAGE,
-    SEND_MESSAGE_SUCCESS as SEND_MESSAGE_SUCCESS,
-    SEND_MESSAGE_FAILURE as SEND_MESSAGE_FAILURE,
+    SEND_MESSAGE_SUCCESS,
+    SEND_MESSAGE_FAILURE,
+    DELETE_MESSAGE_SUCCESS,
+    DELETE_MESSAGE_FAILURE,
     LOAD_MESSAGE,
     UPDATE_MESSAGE,
-    SET_JUST_MOUNTED,
-} from '../actions'
+} from '../actions/actions'
 
 function currentUser(state = {}, { type, payload }) {
     switch (type) {
@@ -55,22 +55,16 @@ function loginAttempt(state = false, { type, payload }) {
     }
 }
 
-function messages(state = [], { type, payload }) {
+function messages(state = new Map(), { type, payload }) {
     switch (type) {
         case ADD_MESSAGE:
-            return state.concat([payload.messageInfo])
         case LOAD_MESSAGE:
-            return state.concat([payload.messageInfo])
         case UPDATE_MESSAGE:
-            let newState = [...state]
-            newState.map(message => {
-                if (message.messageID === payload.messageInfo.messageID) {
-                    return payload.messageInfo
-                }
-            })
+            let newState = new Map(state)
+            newState.set(payload.messageInfo.messageID, payload.messageInfo)
             return newState
         case LOGOUT:
-            return []
+            return new Map()
         default:
             return state
     }
@@ -89,19 +83,23 @@ function beingSent(state = [], { type, payload }) {
     }
 }
 
-function displayError(state = false, { type, payload }) {
+function beingDeleted(state = [], { type, payload }) {
     switch (type) {
-        case SEND_MESSAGE_FAILURE:
-            return 'There was a propblem sending the message'
+        case UPDATE_MESSAGE:
+            return state.concat([payload.messageInfo.messageID])
+        case DELETE_MESSAGE_SUCCESS:
+        case DELETE_MESSAGE_FAILURE:
+            let newState = state.filter(mID => mID !== payload.messageID)
+            return newState
         default:
             return state
     }
 }
 
-function justMounted(state = true, { type, payload }) {
+function displayError(state = false, { type, payload }) {
     switch (type) {
-        case SET_JUST_MOUNTED:
-            return payload
+        case SEND_MESSAGE_FAILURE:
+            return 'There was a propblem sending the message'
         default:
             return state
     }
@@ -114,7 +112,7 @@ const allReducers = combineReducers({
     messages,
     beingSent,
     displayError,
-    justMounted
+    beingDeleted
 })
 
 export default allReducers

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessageAction, sendMessagesAction } from '../../../actions'
+import { addMessageAction, sendMessagesAction } from '../../../actions/actions'
 import { db } from '../../../config'
 import firebase from 'firebase'
 import uuid from 'uuid/v4';
 
 export default function SubmitBar() {
-    const messagesRef = db.collection('messages')
     //state
     const [messageInput, setMessageInput] = useState('')
 

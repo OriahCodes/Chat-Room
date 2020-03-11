@@ -2,12 +2,12 @@
 import './App.css';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutAction, loginAction, setCurrentUserAction,setCurrentUserAndLoginAction} from './actions'
+import { logoutAction, loginAction, setCurrentUserAction,setCurrentUserAndLoginAction} from './actions/actions'
 import firebase from 'firebase'
 import { db } from './config'
 //components
-import ChatRoom from './components/chatRoom';
-import Login from './components/login';
+import ChatRoom from './components/chatRoom/ChatRoom';
+import Login from './components/login/Login';
 
 export default function App() {
   //store 
@@ -20,9 +20,6 @@ export default function App() {
   const setCurrentUser = userInfo => dispatch(setCurrentUserAction(userInfo))
   const setCurrentUserAndLogin = userInfo => dispatch(setCurrentUserAndLoginAction(userInfo))
   const logIn = () => dispatch(loginAction())
-
-  console.log(isLoggedIn)
-  console.log(currentUser)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
@@ -43,7 +40,7 @@ export default function App() {
       .then(docSnapshot => {
         if (docSnapshot.exists) { //if user exists in db
           console.log("user Exists!")
-          addExistingUser(userID, docSnapshot)
+          addExistingUser(docSnapshot.data())
         }
         else { //if user just entered site
           console.log("user just entered site")
@@ -51,18 +48,9 @@ export default function App() {
       })
   }
 
-  function manageLogin(userID) {
-    db.doc(`/users/${userID}`).get()
-      .then(docSnapshot => {
-        if (docSnapshot.exists) { //if user exists in db
-          console.log("user Exists!")
-          addExistingUser(docSnapshot.data())
-        }
-        else { //if new user
+  function onLoginAttempt() {
           console.log("this is a new user")
-          addNewUser(userID)
-        }
-      })
+          addNewUser(currentUser.userID)
   }
 
   function addNewUser(userID) { //add new user to db and login
@@ -70,16 +58,13 @@ export default function App() {
       nickname: currentUser.nickname,
       themeColor: currentUser.themeColor,
       userID
+    }).then(()=>{
+      logIn(userID) //change to login
     })
-    logIn(userID) //change to login
   }
 
   function addExistingUser(userInfo) {
     setCurrentUserAndLogin(userInfo)
-  }
-
-  function onLoginAttempt(nickname, themeColor) {
-    manageLogin(currentUser.userID)
   }
 
   console.log(currentUser)

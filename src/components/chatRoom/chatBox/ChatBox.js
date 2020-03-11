@@ -1,44 +1,52 @@
 import React, { Component, useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadMessageAction, setJustMountedAction, updateMessageAction } from '../../../actions'
+import { loadMessageAction, updateMessageAction } from '../../../actions/actions'
 //components
-import Message from './message'
+import Message from './message/Message'
 import { db } from '../../../config';
-import { render } from '@testing-library/react';
 import './chatBox.css'
 
 export default function ChatBox(props) {
     //store
     const currentUser = useSelector(state => state.currentUser)
     const messages = useSelector(state => state.messages)
-    const justMounted = useSelector(state => state.justMounted)
     //actions
     const dispatch = useDispatch()
     const loadMessage = (messageInfo) => dispatch(loadMessageAction(messageInfo))
-    const setJustMounted= (boolean) => dispatch(setJustMountedAction(boolean))
-    console.log(messages)
 
     useEffect(() => {
         addMessageListener()
     }, [])
-
+    console.log(messages)
     function addMessageListener() {
-        console.log(messages)
         db.collection('messages').orderBy('timestamp')
-            .onSnapshot(snapshot => {
-                let changes = snapshot.docChanges()
-                changes.forEach(change => {
-                    if (change.type === 'added') {
-                        const messageInfo = change.doc.data()
-                        // console.log(props.justMounted)
-                        console.log(justMounted)
-                        if (messageInfo.userID !== currentUser.userID){//(justMounted) { //ignore messages of current user that just arrived to db
+            .onSnapshot({ includeMetadataChanges: true }, snapshot => {
+                snapshot.forEach(doc => {
+                    let messageInfo = doc.data()
+                    if (!doc.metadata.fromCache) { //disabling firebase offline capabilities for demonstration purposes
+                        if (!messages.has(messageInfo.messageID)) {
                             loadMessage(messageInfo)
                         }
                     }
                 })
-                // props.setJustMounted()
-                setJustMounted(false)
+                // let changes = snapshot.docChanges()
+
+                // var source = snapshot.metadata.fromCache ? "local cache" : "server";
+                // console.log("Data came from " + source);
+                // if (source === "server") { //disabling firebase offline capabilities for demonstration purposes
+                //     changes.forEach(change => {
+                //         if (change.type === 'added') {
+                //             const messageInfo = change.doc.data()
+                //             if (messages.has(messageInfo.messageID)) {
+                //                 // updateMessageStatus()
+                //             }
+                //             else {
+                //                 debugger
+                //                 loadMessage(messageInfo)
+                //             }
+                //         }
+                //     })
+                // }
             })
     }
 
@@ -65,7 +73,7 @@ export default function ChatBox(props) {
 
     return (
         <div className="chat-box">
-            {messages.map(message => <Message key={message.messageID} message={message} />)}
+            {[...messages.keys()].map(messageID => <Message key={messageID} message={messages.get(messageID)} />)}
         </div>
     )
 }

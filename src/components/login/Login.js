@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentUserAction } from '../../actions'
+import { setCurrentUserAction } from '../../actions/actions'
 import './login.css'
 
 const themeColors = ["#F27781", "#18298C", "#04BF8A", "#F2CF1D", "#F29F05"]

@@ -93,28 +93,74 @@ export const sendMessageFailure = (messageID) => {
     }
 }
 
+function addMessageToDB(messageInfo) {
+    return db.doc(`messages/${messageInfo.messageID}`).set({
+        content: messageInfo.content,
+        timestamp: messageInfo.timestamp,//firebase.firestore.FieldValue.serverTimestamp(),
+        userID: messageInfo.userID,
+        nickname: messageInfo.nickname,
+        themeColor: messageInfo.themeColor,
+        messageStatus: 'sent',
+        messageID: messageInfo.messageID
+    })
+}
+
 export const sendMessagesAction = (messageInfo) => {
     return (dispatch) => {
         dispatch(addMessageAction(messageInfo))
-        db.doc(`messages/${messageInfo.messageID}`).set({
-            content: messageInfo.content,
-            timestamp: messageInfo.timestamp,//firebase.firestore.FieldValue.serverTimestamp(),
-            userID: messageInfo.userID,
-            nickname: messageInfo.nickname,
-            themeColor: messageInfo.themeColor,
-            messageStatus: 'sent',
-            messageID: messageInfo.messageID
-        })
+        addMessageToDB(messageInfo)
             .then(() => {
                 console.log("message " + messageInfo.messageID + " was sent successfully!")
                 dispatch(sendMessageSuccess(messageInfo.messageID))
-                messageInfo.messageStatus = 'sent'
-                dispatch(updateMessageAction(messageInfo))
             })
             .catch((error) => {
                 console.log(error)
                 dispatch(sendMessageFailure(messageInfo.messageID))
             })
+    }
+}
+
+export const DELETE_MESSAGE_SUCCESS = 'DELETE_MESSAGE_SUCCESS'
+export const deleteMessageSuccess = (messageID) => {
+    return {
+        type: DELETE_MESSAGE_SUCCESS,
+        payload: {
+            messageID
+        }
+    }
+}
+
+export const DELETE_MESSAGE_FAILURE = 'DELETE_MESSAGE_FAILURE'
+export const deleteMessageFailure = (messageID) => {
+    return {
+        type: DELETE_MESSAGE_FAILURE,
+        payload: {
+            messageID
+        }
+    }
+}
+
+function deleteMessageContentFromDB(messageID) { //change message content and status to deleted
+    return db.doc(`messages/${messageID}`).update({
+        content: "Message deleted",
+        messageStatus: 'deleted',
+    })
+}
+
+export const deleteMessageAction = (messageInfo) => {
+    messageInfo.content = "Message deleted"
+    messageInfo.messageStatus = 'deleting'
+    return (dispatch) => {
+        dispatch(updateMessageAction(messageInfo))
+        deleteMessageContentFromDB(messageInfo.messageID)
+        .then(() => {
+            console.log("message " + messageInfo.messageID + " was successfully deleted!")
+            dispatch(deleteMessageSuccess(messageInfo.messageID))
+        })
+        .catch((error) => {
+            console.log(error)
+            dispatch(deleteMessageFailure(messageInfo.messageID))
+        })
     }
 }
 
@@ -138,13 +184,7 @@ export const updateMessageAction = (messageInfo) => {
     }
 }
 
-export const SET_JUST_MOUNTED = 'SET_JUST_MOUNTED'
-export const setJustMountedAction = (boolean) => {
-    return {
-        type: SET_JUST_MOUNTED,
-        payload: boolean,
-    }
-}
+
 
 
 

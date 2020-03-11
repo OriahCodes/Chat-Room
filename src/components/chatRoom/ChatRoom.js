@@ -1,11 +1,11 @@
 import React, { Component, useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector, setJustMountedAction } from 'react-redux';
 import firebase from 'firebase'
-import { logoutAction } from '../../actions'
+import { logoutAction } from '../../actions/actions'
 //components
-import ChatBox from './chatBox'
-import LoadingStatus from './loadingStatus'
-import SubmitBar from './submitBar'
+import ChatBox from './chatBox/ChatBox'
+import LoadingStatus from './loadingStatus/LoadingStatus'
+import SubmitBar from './submitBar/SubmitBar'
 import { db } from '../../config';
 
 export default function ChatRoom() {

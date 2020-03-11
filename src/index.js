@@ -6,13 +6,13 @@ import logger from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux';
 import './index.css';
 import App from './App';
-import allReducers from './reducers'
+import allReducers from './reducers/reducers'
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
     allReducers,
     applyMiddleware(
-        thunk
+        logger,thunk
     ),
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
