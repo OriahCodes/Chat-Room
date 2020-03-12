@@ -1,5 +1,31 @@
-.chat-box{
-    height: 60vh;
-    /* width: 20vw; */
+#chat-box{
+    width: 40vw;
+    min-width: 450px;
+    height: 55vh ;
     overflow: auto;
+    padding: var(--secondary-padding);
+    background-color: white;
+    margin: auto;
+    margin-top: var(--primary-margin)
 }
+
+.scroll-to-bottom{
+    height: 60vh;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #f1c0e8;
+    border-radius: 8px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #f1c0e8;
+    border-radius: 8px;
+  }

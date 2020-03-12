@@ -1,0 +1,23 @@
+#chat-room{
+    padding-top: var(--secondary-padding);
+    font-family: var(--primary-font-family);
+}
+
+    #chatRoom-title-container>i{
+        font-size: 50px;
+        padding: var(--secondary-padding)
+    }
+
+    #chatRoom-title-container>span{
+        font-size: 50px;
+    }
+
+    #logout-button{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+.welcome{
+    font-size: 20px
+}

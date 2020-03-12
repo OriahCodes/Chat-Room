@@ -1,5 +1,52 @@
-.theme-color{
-    display: inline-block;
-    height: 10px;
-    width: 10px;
+#login-container{
+    height: 100%;
+    font-family: var(--primary-font-family);
+}
+
+#login-title-container{
+    padding-top: 30px;
+}
+
+    .app-title{
+        font-size: 60px;
+    }
+
+    .app-title-description{
+        font-size: 20px
+    }
+
+    .fa-comments{
+        font-size: 70px;
+        color: var(--primary-color);
+    }
+
+#user-info-container{
+    font-size: 20px;    
+}
+    #submit-name{
+        padding-top: var(--primary-padding)
+    }
+
+        #submit-name>div{
+            padding: var(--secondary-padding)
+        }
+
+
+
+#choose-theme>div{
+    margin: var(--primary-margin)
+}
+
+    .theme-option{
+        padding: var(--secondary-padding)
+    }
+        .theme-color{
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+        }
+
+#join-chat-button{
+    margin-top: 40px
 }

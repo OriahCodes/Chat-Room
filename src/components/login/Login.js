@@ -25,7 +25,7 @@ export default function Login(props) {
                 nickname,
                 themeColor,
             })
-            props.onLoginAttempt(nickname,themeColor)
+            props.onLoginAttempt(nickname, themeColor)
 
             setThemeColor("")
             setNickname("")
@@ -58,26 +58,36 @@ export default function Login(props) {
     function handleTheme(event) { setThemeColor(event.target.value) }
 
     return (
-        <div className="login-container">
+        <div id="login-container">
 
-            <h1> Welcome to ORCHAT!</h1>
-
-            <div>Submit your nickname:</div>
-            <div><input type="text" onChange={handleNickname} value={nickname}></input></div>
-
-            <div>Choose theme:</div>
-            <div className="choose-theme">
-                {themeColors.map(theme => {
-                    return (
-                        <div key={theme}>
-                            <input type="radio" name="theme-choice" value={theme} onChange={handleTheme} />
-                            <span className="theme-color" style={{ backgroundColor: `${theme}` }}></span>
-                        </div>
-                    )
-                })}
+            <div id="login-title-container">
+                <i className="far fa-comments"></i>
+                <div className="app-title">Messango</div>
+                <div className="app-title-description">Online Chat Room Without Registration</div>
             </div>
 
-            <button onClick={onLoginAttempt}> Join Chat</button>
+            <div id="user-info-container">
+                <div id="submit-name">
+                    <div>Enter your name</div>
+                    <input className="input" type="text" onChange={handleNickname} value={nickname} ></input>
+                </div>
+
+                <div id="choose-theme">
+                    <div>Choose theme:</div>
+                    {themeColors.map(theme => {
+                        return (
+                            <span className="theme-option" key={theme}>
+                                <input type="radio" name="theme-choice" value={theme} onChange={handleTheme} />
+                                <span className="theme-color" style={{ backgroundColor: `${theme}` }}></span>
+                            </span>
+                        )
+                    })}
+                </div>
+            </div>
+
+
+            <div className="button" id="join-chat-button" onClick={onLoginAttempt}> JOIN CHAT</div>
+
             {errorMessages.map(messageInd => {
                 return (
                     <div>{messagesList[messageInd]}</div>

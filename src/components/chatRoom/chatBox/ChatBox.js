@@ -1,12 +1,15 @@
 import React, { Component, useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadMessageAction, updateMessageAction } from '../../../actions/actions'
+// import ScrollToBottom from 'react-scroll-to-bottom';
+import { animateScroll } from "react-scroll";
+
 //components
 import Message from './message/Message'
 import { db } from '../../../config';
 import './chatBox.css'
 
-export default function ChatBox(props) {
+export default function ChatBox() {
     //store
     const currentUser = useSelector(state => state.currentUser)
     const messages = useSelector(state => state.messages)
@@ -17,7 +20,7 @@ export default function ChatBox(props) {
     useEffect(() => {
         addMessageListener()
     }, [])
-    console.log(messages)
+
     function addMessageListener() {
         db.collection('messages').orderBy('timestamp')
             .onSnapshot({ includeMetadataChanges: true }, snapshot => {
@@ -71,9 +74,21 @@ export default function ChatBox(props) {
     //     console.log(displayError)
     // }, [displayError])
 
+    useEffect(() => {
+        scrollToBottom()
+    })
+
+    function scrollToBottom() {
+        animateScroll.scrollToBottom({
+            containerId: "chat-box"
+        });
+    }
+
     return (
-        <div className="chat-box">
+        <div id="chat-box">
+            {/* <ScrollToBottom className="scroll-to-bottom"> */}
             {[...messages.keys()].map(messageID => <Message key={messageID} message={messages.get(messageID)} />)}
+            {/* </ScrollToBottom> */}
         </div>
     )
 }

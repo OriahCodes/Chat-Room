@@ -1,0 +1,8 @@
+#submit-bar{
+    padding-top: 20px
+}
+
+.fa-paper-plane{
+    font-size: 25px;
+    color: var(--primary-color)
+}

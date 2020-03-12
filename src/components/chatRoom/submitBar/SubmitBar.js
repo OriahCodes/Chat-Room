@@ -2,8 +2,10 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessageAction, sendMessagesAction } from '../../../actions/actions'
 import { db } from '../../../config'
+import './submitBar.css'
 import firebase from 'firebase'
 import uuid from 'uuid/v4';
+
 
 export default function SubmitBar() {
     //state
@@ -59,12 +61,15 @@ export default function SubmitBar() {
     }
 
     return (
-        <div className="submit-bar">
+        <div id="submit-bar">
             <input
+                className="input"
                 placeholder="Add a message"
                 onChange={handleInputChange}
                 value={messageInput} />
-            <button onClick={onSendMessage}>Send</button>
+            <div className="button" onClick={onSendMessage}>
+                <i class="far fa-paper-plane"></i>
+            </div>
         </div>
 
     )

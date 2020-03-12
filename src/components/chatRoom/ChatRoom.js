@@ -2,25 +2,32 @@ import React, { Component, useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector, setJustMountedAction } from 'react-redux';
 import firebase from 'firebase'
 import { logoutAction } from '../../actions/actions'
+import { db } from '../../config';
+import './chatRoom.css'
 //components
 import ChatBox from './chatBox/ChatBox'
 import LoadingStatus from './loadingStatus/LoadingStatus'
 import SubmitBar from './submitBar/SubmitBar'
-import { db } from '../../config';
 
 export default function ChatRoom() {
     //store
     const currentUser = useSelector(state => state.currentUser)
     const displayError = useSelector(state => state.displayError)
-        
-    function onLogout() { 
+
+    function onLogout() {
         firebase.auth().signOut()
     }
 
     return (
-        <div className="chatRoom">
-            <div> Hello {currentUser.nickname}</div>
-            <button className="logout" onClick={onLogout}>Log Out</button>
+        <div id="chat-room">
+
+            <div id="chatRoom-title-container">
+                <i className="far fa-comments"></i>
+                <span>Messango</span>
+            </div>
+
+            <div className="welcome"> Hello {currentUser.nickname} !</div>
+            <div className="button" id="logout-button" onClick={onLogout}>Logout</div>
 
             <ChatBox />
 
