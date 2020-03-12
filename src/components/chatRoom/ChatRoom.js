@@ -21,13 +21,14 @@ export default function ChatRoom() {
     return (
         <div id="chat-room">
 
+            <span className="button" id="logout-button" onClick={onLogout}>Logout</span>
+
             <div id="chatRoom-title-container">
                 <i className="far fa-comments"></i>
                 <span>Messango</span>
             </div>
 
-            <div className="welcome"> Hello {currentUser.nickname} !</div>
-            <div className="button" id="logout-button" onClick={onLogout}>Logout</div>
+            <div className="welcome"> Hello {currentUser.nickname} , welcome !</div>
 
             <ChatBox />
 

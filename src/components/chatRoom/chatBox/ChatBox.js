@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadMessageAction, updateMessageAction } from '../../../actions/actions'
-// import ScrollToBottom from 'react-scroll-to-bottom';
 import { animateScroll } from "react-scroll";
 
 //components
@@ -11,7 +10,6 @@ import './chatBox.css'
 
 export default function ChatBox() {
     //store
-    const currentUser = useSelector(state => state.currentUser)
     const messages = useSelector(state => state.messages)
     //actions
     const dispatch = useDispatch()
@@ -86,9 +84,14 @@ export default function ChatBox() {
 
     return (
         <div id="chat-box">
-            {/* <ScrollToBottom className="scroll-to-bottom"> */}
-            {[...messages.keys()].map(messageID => <Message key={messageID} message={messages.get(messageID)} />)}
-            {/* </ScrollToBottom> */}
+            {messages.size === 0 ?
+                <div className="spinner">
+                    <div className="bounce1"></div>
+                    <div className="bounce2"></div>
+                    <div className="bounce3"></div>
+                </div> :
+                [...messages.keys()].map(messageID => <Message key={messageID} message={messages.get(messageID)} />)
+            }
         </div>
     )
 }

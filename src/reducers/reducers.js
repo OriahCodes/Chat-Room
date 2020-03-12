@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import db from '../config';
 import {
+    APP_NOT_LOADING,
+    APP_LOADING,
     SET_CURRENT_USER,
     LOGIN,
     LOGIN_ATTEMPT,
@@ -105,7 +107,20 @@ function displayError(state = false, { type, payload }) {
     }
 }
 
+function isAppLoading(state = true, { type, payload }) {
+    switch (type) {
+        case APP_LOADING:
+            return true
+        case APP_NOT_LOADING:
+            return false
+        default:
+            return state
+    }
+}
+
+
 const allReducers = combineReducers({
+    isAppLoading,
     currentUser,
     loginAttempt,
     isLoggedIn,

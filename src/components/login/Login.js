@@ -62,6 +62,7 @@ export default function Login(props) {
 
             <div id="login-title-container">
                 <i className="far fa-comments"></i>
+                {/* <div><span className="try"></span></div> */}
                 <div className="app-title">Messango</div>
                 <div className="app-title-description">Online Chat Room Without Registration</div>
             </div>
@@ -73,7 +74,7 @@ export default function Login(props) {
                 </div>
 
                 <div id="choose-theme">
-                    <div>Choose theme:</div>
+                    <div>Choose theme color</div>
                     {themeColors.map(theme => {
                         return (
                             <span className="theme-option" key={theme}>

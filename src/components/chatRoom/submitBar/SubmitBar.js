@@ -27,7 +27,6 @@ export default function SubmitBar() {
     function onSendMessage() {
         if (messageInput) {
             const messageInfo = createMessage()
-            // addMessage(messageInfo)
             setMessageInput('')
             dispatch(sendMessagesAction(messageInfo))
 
@@ -60,15 +59,23 @@ export default function SubmitBar() {
         return message;
     }
 
+    function handleKeyDown(event) {
+        if (event.key === "Enter") {
+            onSendMessage()
+        }
+    }
+
     return (
         <div id="submit-bar">
             <input
+                type="text"
                 className="input"
                 placeholder="Add a message"
                 onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
                 value={messageInput} />
-            <div className="button" onClick={onSendMessage}>
-                <i class="far fa-paper-plane"></i>
+            <div className="button" onClick={onSendMessage} >
+                <i className="far fa-paper-plane"></i>
             </div>
         </div>
 

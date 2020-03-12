@@ -1,5 +1,18 @@
 import { db } from '../config';
-import firebase from 'firebase'
+
+export const APP_LOADING = 'APP_LOADING'
+export const appIsLoadingAction = () => {
+    return {
+        type: APP_LOADING,
+    }
+}
+
+export const APP_NOT_LOADING = 'APP_NOT_LOADING'
+export const appNotLoadingAction = () => {
+    return {
+        type: APP_NOT_LOADING,
+    }
+}
 
 export const LOGIN = 'LOGIN'
 export const loginAction = () => {
@@ -34,6 +47,7 @@ export const setCurrentUserAndLoginAction = (userInfo) => {
     return (dispatch) => {
         dispatch(setCurrentUserAction(userInfo))
         dispatch(loginAction())
+        dispatch(appNotLoadingAction())
     }
 }
 
