@@ -8,6 +8,7 @@ import { db } from './config'
 //components
 import ChatRoom from './components/chatRoom/ChatRoom';
 import Login from './components/login/Login';
+import Loader1 from './components/spinners/spinner1/Spinner1'
 
 export default function App() {
   //store 
@@ -77,10 +78,11 @@ export default function App() {
     <div className="app">
 
       {isAppLoading ?
-        <div className="spinner2" id="loading-app-spinner">
-          <div class="cube1"></div>
-          <div class="cube2"></div>
-        </div> :
+        // <div className="spinner2" id="loading-app-spinner">
+        //   <div className="cube1"></div>
+        //   <div className="cube2"></div>
+        // </div> :
+        <Loader1/> :
 
         isLoggedIn ?
           <ChatRoom /> :
