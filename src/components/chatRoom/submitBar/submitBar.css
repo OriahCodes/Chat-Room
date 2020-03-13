@@ -1,8 +1,14 @@
 #submit-bar{
-    padding-top: 20px
+    padding-top: var(--secondary-padding)
 }
 
 .fa-paper-plane{
     font-size: 25px;
     color: var(--primary-color)
 }
+
+#message-input{
+    width: 25vw;
+    min-width: 210px;
+}
+

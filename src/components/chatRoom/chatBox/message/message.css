@@ -24,7 +24,7 @@
     max-width: 25vw;
     display: inline-block;
     word-wrap: break-word;
-    /* padding-left: 4px; */
+    font-size: 1em;
 }
 
 .status-icon{
@@ -58,3 +58,18 @@
     display: block;
     text-align: left;
 }
+
+
+@media (max-width: 479px) {
+    .message-container{
+        margin: 10px;
+        min-width: 160px;
+    }
+    
+    .content{
+        max-width: 52vw;
+        display: inline-block;
+        word-wrap: break-word;
+        font-size: 4vw;
+    }
+  }

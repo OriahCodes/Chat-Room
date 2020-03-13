@@ -70,11 +70,12 @@ export default function SubmitBar() {
             <input
                 type="text"
                 className="input"
+                id="message-input"
                 placeholder="Add a message"
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 value={messageInput} />
-            <div className="button" onClick={onSendMessage} >
+            <div className="button" id="send-message-button" onClick={onSendMessage} >
                 <i className="far fa-paper-plane"></i>
             </div>
         </div>

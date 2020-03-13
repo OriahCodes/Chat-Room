@@ -83,15 +83,17 @@ export default function ChatBox() {
     }
 
     return (
-        <div id="chat-box">
-            {messages.size === 0 ?
-                <div className="spinner">
-                    <div className="bounce1"></div>
-                    <div className="bounce2"></div>
-                    <div className="bounce3"></div>
-                </div> :
-                [...messages.keys()].map(messageID => <Message key={messageID} message={messages.get(messageID)} />)
-            }
+        <div id="chat-box-container">
+            <div id="chat-box">
+                {messages.size === 0 ?
+                    <div className="spinner">
+                        <div className="bounce1"></div>
+                        <div className="bounce2"></div>
+                        <div className="bounce3"></div>
+                    </div> :
+                    [...messages.keys()].map(messageID => <Message key={messageID} message={messages.get(messageID)} />)
+                }
+            </div>
         </div>
     )
 }

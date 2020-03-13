@@ -1,35 +1,38 @@
-#chat-box{
-    width: 40vw;
-    min-width: 450px;
-    height: 55vh ;
-    overflow: auto;
-    padding: var(--secondary-padding);
-    background-color: white;
-    margin: auto;
-    margin-top: var(--primary-margin);
-    border-radius: 10px;
+#chat-box-container{
+  padding: var(--secondary-padding)
 }
 
-.scroll-to-bottom{
-    height: 60vh;
-}
+  #chat-box{
+      width: 45vw;
+      min-width: 450px;
+      height: 55vh ;
+      overflow: auto;
+      padding: var(--secondary-padding);
+      background-color: white;
+      margin: auto;
+      border-radius: 10px;
+  }
 
-/* width */
-::-webkit-scrollbar {
-    width: 20px;
+  .scroll-to-bottom{
+      height: 60vh;
   }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px #f1c0e8;
-    border-radius: 8px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #f1c0e8;
-    border-radius: 8px;
-  }
+
+  /* width */
+  ::-webkit-scrollbar {
+      width: 20px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px #f1c0e8;
+      border-radius: 8px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #f1c0e8;
+      border-radius: 8px;
+    }
 
 
 
@@ -73,5 +76,15 @@
   } 40% { 
     -webkit-transform: scale(1.0);
     transform: scale(1.0);
+  }
+}
+
+
+@media (max-width: 479px) {
+  #chat-box{
+    min-width: 300px;
+    padding: 0px;
+    width: unset;
+    height: 65vh;
   }
 }

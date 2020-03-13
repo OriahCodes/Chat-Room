@@ -35,17 +35,12 @@
     font-size: 20px;    
 }
     #submit-name{
-        padding-top: var(--primary-padding)
+        padding-top: 40px
     }
 
-        #submit-name>div{
-            padding: var(--secondary-padding)
-        }
-
-
-
 #choose-theme>div{
-    margin: var(--primary-margin)
+    margin-top: var(--primary-margin);
+    margin-bottom: var(--secondary-margin)
 }
 
     .theme-option{
