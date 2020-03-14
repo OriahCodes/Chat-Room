@@ -1,8 +1,20 @@
-#loading-status{
+#loading-status-container{
   position: absolute;
-  top: 0px;
-  right: 10px;
+  top: 40px;
+  right: 40px;
 }   
+
+  .loading-status{
+    padding-bottom: 20px;
+  }
+
+  .loading-status>div{
+    padding-bottom: 10px;
+  }
    
    
-   
+  @media (max-width: 479px) {
+    .loading-status{
+      display: none;
+    }
+  }

@@ -127,10 +127,10 @@ export const sendMessagesAction = (messageInfo) => {
                 console.log("message " + messageInfo.messageID + " was sent successfully!")
                 dispatch(sendMessageSuccess(messageInfo.messageID))
             })
-            .catch((error) => {
-                console.log(error)
-                dispatch(sendMessageFailure(messageInfo.messageID))
-            })
+            // .catch((error) => {
+            //     console.log(error)
+            //     dispatch(sendMessageFailure(messageInfo.messageID))
+            // })
     }
 }
 
@@ -171,10 +171,10 @@ export const deleteMessageAction = (messageInfo) => {
             console.log("message " + messageInfo.messageID + " was successfully deleted!")
             dispatch(deleteMessageSuccess(messageInfo.messageID))
         })
-        .catch((error) => {
-            console.log(error)
-            dispatch(deleteMessageFailure(messageInfo.messageID))
-        })
+        // .catch((error) => {
+        //     console.log(error)
+        //     dispatch(deleteMessageFailure(messageInfo.messageID))
+        // })
     }
 }
 
@@ -195,6 +195,13 @@ export const updateMessageAction = (messageInfo) => {
         payload: {
             messageInfo,
         }
+    }
+}
+
+export const USER_IS_OFFLINE = 'USER_IS_OFFLINE'
+export const userIsOfflineAction = () => {
+    return {
+        type: USER_IS_OFFLINE,
     }
 }
 

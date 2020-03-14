@@ -14,6 +14,7 @@ import {
     DELETE_MESSAGE_FAILURE,
     LOAD_MESSAGE,
     UPDATE_MESSAGE,
+    USER_IS_OFFLINE
 } from '../actions/actions'
 
 function currentUser(state = {}, { type, payload }) {
@@ -118,6 +119,16 @@ function isAppLoading(state = true, { type, payload }) {
     }
 }
 
+function errorMessage(state = "", { type, payload }) {
+    switch (type) {
+        case USER_IS_OFFLINE:
+            return "Looks like you're having some connection issues there"
+        default:
+            return state
+    }
+}
+
+
 
 const allReducers = combineReducers({
     isAppLoading,
@@ -127,7 +138,8 @@ const allReducers = combineReducers({
     messages,
     beingSent,
     displayError,
-    beingDeleted
+    beingDeleted,
+    errorMessage
 })
 
 export default allReducers

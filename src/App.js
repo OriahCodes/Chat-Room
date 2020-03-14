@@ -2,13 +2,13 @@
 import './App.css';
 import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutAction, loginAction, setCurrentUserAction, setCurrentUserAndLoginAction, appIsLoadingAction, appNotLoadingAction } from './actions/actions'
+import { userIsOfflineAction, logoutAction, loginAction, setCurrentUserAction, setCurrentUserAndLoginAction, appIsLoadingAction, appNotLoadingAction } from './actions/actions'
 import firebase from 'firebase'
 import { db } from './config'
 //components
 import ChatRoom from './components/chatRoom/ChatRoom';
 import Login from './components/login/Login';
-import Loader1 from './components/spinners/spinner1/Spinner1'
+import Spinner1 from './components/spinners/spinner1/Spinner1'
 
 export default function App() {
   //store 
@@ -24,6 +24,7 @@ export default function App() {
   const setCurrentUser = userInfo => dispatch(setCurrentUserAction(userInfo))
   const setCurrentUserAndLogin = userInfo => dispatch(setCurrentUserAndLoginAction(userInfo))
   const logIn = () => dispatch(loginAction())
+  const userIsOffline = () => dispatch(userIsOfflineAction())
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
@@ -51,6 +52,11 @@ export default function App() {
           appNotLoading()
           console.log("user just entered site")
         }
+      }).catch(error=>{
+        if (error.message.includes("offline")){
+          console.log("Error getting users docs: " +error.message)
+          userIsOffline()
+        }
       })
   }
 
@@ -60,6 +66,7 @@ export default function App() {
   }
 
   function addNewUser(userID) { //add new user to db and login
+    debugger
     db.doc(`/users/${userID}`).set({
       nickname: currentUser.nickname,
       themeColor: currentUser.themeColor,
@@ -82,7 +89,7 @@ export default function App() {
         //   <div className="cube1"></div>
         //   <div className="cube2"></div>
         // </div> :
-        <Loader1/> :
+        <Spinner1/> :
 
         isLoggedIn ?
           <ChatRoom /> :

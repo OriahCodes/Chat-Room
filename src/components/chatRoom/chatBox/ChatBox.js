@@ -35,10 +35,6 @@ export default function ChatBox() {
             })
     }
 
-    // useEffect(()=>{
-    //     console.log(displayError)
-    // }, [displayError])
-
     useEffect(() => {
         scrollToBottom()
     })

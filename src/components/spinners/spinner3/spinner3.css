@@ -1,7 +1,8 @@
 .sk-chase {
   width: 40px;
   height: 40px;
-  position: relative;
+  position: absolute;
+  right: 25px;
   animation: sk-chase 2.5s infinite linear both;
 }
 
