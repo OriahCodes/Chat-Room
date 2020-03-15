@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userIsOfflineAction, logoutAction, loginAction, setCurrentUserAction, setCurrentUserAndLoginAction, appIsLoadingAction, appNotLoadingAction } from './actions/actions'
 import firebase from 'firebase'
@@ -72,7 +72,7 @@ export default function App() {
       themeColor: currentUser.themeColor,
       userID
     }).then(() => {
-      logIn(userID) //change to login
+      logIn(userID) 
     })
   }
 
@@ -85,10 +85,6 @@ export default function App() {
     <div className="app">
 
       {isAppLoading ?
-        // <div className="spinner2" id="loading-app-spinner">
-        //   <div className="cube1"></div>
-        //   <div className="cube2"></div>
-        // </div> :
         <Spinner1/> :
 
         isLoggedIn ?

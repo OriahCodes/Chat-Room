@@ -10,12 +10,12 @@
 
 *{
   text-align: center;
-  color: var(--primary-text-color)
-  /* color: #555555 */
+  color: var(--primary-text-color);
+  font-family: var(--primary-font-family)
 }
 
 .app {
-  background-color: #f7f7f7;
+  background-color: #f0f0f0;
   text-align: center;
   height: 100vh;
 }
@@ -24,12 +24,12 @@
   display: inline-block;
   cursor: pointer;
   background-color: #f0f0f0;
-  border-color: #dedede;
+  border-color: #cac1c1;
   border-style: solid;
   font-size: 16px;
   font-weight: 500;
   padding: .60rem 1rem;
-  border-radius: .3rem;
+  border-radius: 30px;
   color: var(--primary-color);
 }
 
@@ -38,7 +38,7 @@
 }
 
 .input{
-  box-shadow: inset 0 2px 0 rgba(0,0,0,.075);
+  /* box-shadow: inset 0 2px 0 rgba(0,0,0,.075);
   padding: .75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: .3rem;
@@ -47,7 +47,17 @@
   background-color: #fff;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  margin: 10px
+  margin: 10px */
+
+  border-color: #d6d0d052;
+  border-width: 0.5px;
+  box-shadow: 0px;
+  padding: .75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 25px;
+  line-height: 1.25;
+  color: #333;
+  margin: 10px;
 }
 
 
