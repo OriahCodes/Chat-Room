@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userIsOfflineAction, logoutAction, loginAction, setCurrentUserAction, setCurrentUserAndLoginAction, appIsLoadingAction, appNotLoadingAction } from './actions/actions'
 import firebase from 'firebase'
@@ -66,7 +66,6 @@ export default function App() {
   }
 
   function addNewUser(userID) { //add new user to db and login
-    debugger
     db.doc(`/users/${userID}`).set({
       nickname: currentUser.nickname,
       themeColor: currentUser.themeColor,
@@ -80,7 +79,6 @@ export default function App() {
     setCurrentUserAndLogin(userInfo)
   }
 
-  console.log(currentUser)
   return (
     <div className="app">
 

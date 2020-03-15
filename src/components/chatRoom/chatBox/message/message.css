@@ -25,6 +25,8 @@
     display: inline-block;
     word-wrap: break-word;
     font-size: 1em;
+    text-align: left;
+    color: var(--secondary-text-color)
 }
 
 .status-icon{
@@ -71,5 +73,6 @@
         display: inline-block;
         word-wrap: break-word;
         font-size: 4vw;
+        text-align: left;
     }
   }

@@ -8,7 +8,15 @@
 }
 
 #message-input{
-    width: 25vw;
+    width: 35vw;
     min-width: 210px;
 }
 
+
+
+@media (prefers-reduced-motion: no-preference) {
+    #message-input{
+        min-width: 180px;
+    }
+  }
+  

@@ -1,12 +1,12 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState} from 'react';
+import { useDispatch } from 'react-redux';
 import { setCurrentUserAction } from '../../actions/actions'
 import './login.css'
 
 const themeColors = ["#F27781", "#18298C", "#04BF8A", "#F2CF1D", "#F29F05"]
 const messagesList = [
     "Please submit a username",
-    "Put in an actuall name, will ya",
+    "Put in an actual name, will ya",
     "Please choose a theme color to make stuff neat"
 ]
 
@@ -62,7 +62,6 @@ export default function Login(props) {
 
             <div id="login-title-container">
                 <i className="far fa-comments"></i>
-                {/* <div><span className="try"></span></div> */}
                 <div className="app-title">Messango</div>
                 <div className="app-title-description">Online Chat Room Without Registration</div>
             </div>

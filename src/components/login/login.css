@@ -18,12 +18,12 @@
 
     .app-title{
         font-size: 60px;
-        /* font-family: 'Montserrat', sans-serif;
-        font-weight: bolder; */
+        color: var(--secondary-text-color)
     }
 
     .app-title-description{
-        font-size: 20px
+        font-size: 20px;
+        color: var(--secondary-text-color)
     }
 
     .fa-comments{

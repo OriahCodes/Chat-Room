@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux'
-import db from '../config';
 import {
     APP_NOT_LOADING,
     APP_LOADING,
     SET_CURRENT_USER,
     LOGIN,
-    LOGIN_ATTEMPT,
     LOGOUT,
     ADD_MESSAGE,
     SEND_MESSAGE_SUCCESS,
@@ -39,17 +37,6 @@ function currentUser(state = {}, { type, payload }) {
 function isLoggedIn(state = false, { type, payload }) {
     switch (type) {
         case LOGIN:
-            return true
-        case LOGOUT:
-            return false
-        default:
-            return state
-    }
-}
-
-function loginAttempt(state = false, { type, payload }) {
-    switch (type) {
-        case LOGIN_ATTEMPT:
             return true
         case LOGOUT:
             return false
@@ -99,15 +86,6 @@ function beingDeleted(state = [], { type, payload }) {
     }
 }
 
-function displayError(state = false, { type, payload }) {
-    switch (type) {
-        case SEND_MESSAGE_FAILURE:
-            return 'There was a propblem sending the message'
-        default:
-            return state
-    }
-}
-
 function isAppLoading(state = true, { type, payload }) {
     switch (type) {
         case APP_LOADING:
@@ -133,13 +111,11 @@ function errorMessage(state = "", { type, payload }) {
 const allReducers = combineReducers({
     isAppLoading,
     currentUser,
-    loginAttempt,
     isLoggedIn,
     messages,
     beingSent,
-    displayError,
     beingDeleted,
-    errorMessage
+    errorMessage,
 })
 
 export default allReducers

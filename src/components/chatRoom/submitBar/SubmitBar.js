@@ -1,24 +1,17 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessageAction, sendMessagesAction } from '../../../actions/actions'
-import { db } from '../../../config'
+import { sendMessagesAction } from '../../../actions/actions'
 import './submitBar.css'
-import firebase from 'firebase'
 import uuid from 'uuid/v4';
 
 
 export default function SubmitBar() {
     //state
     const [messageInput, setMessageInput] = useState('')
-
     //store
     const currentUser = useSelector(state => state.currentUser)
-    // const messages = useSelector(state => state.messages)
-    // const beingSent = useSelector(state => state.beingSent)
-
     //actions
     const dispatch = useDispatch()
-    const addMessage = messageInfo => dispatch(addMessageAction(messageInfo))
 
     function handleInputChange(event) {
         setMessageInput(event.target.value)
@@ -29,20 +22,6 @@ export default function SubmitBar() {
             const messageInfo = createMessage()
             setMessageInput('')
             dispatch(sendMessagesAction(messageInfo))
-
-            // addMessageAction(messageInfo)()
-            //     // this.setState({ loading: true });
-            //     messagesRef.child(id).push().set(createMessage())
-            //         .then(() => {
-            //             this.setState({ loading: false, message: '', errors: [] })
-            //         })
-            //         .catch(err => {
-            //             // let errors = this.state.errors.concat(err);
-            //             // this.setState({ loading: false, errors });
-            //         })
-            // } else {
-            //     let errors = this.state.errors.concat({ message: 'Add a message' });
-            //     this.setState({ errors });
         }
     }
 
@@ -79,7 +58,6 @@ export default function SubmitBar() {
                 <i className="far fa-paper-plane"></i>
             </div>
         </div>
-
     )
 }
 

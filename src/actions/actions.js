@@ -28,13 +28,6 @@ export const logoutAction = (userInfo) => {
     }
 }
 
-export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT'
-export const loginAttemptAction = () => {
-    return {
-        type: LOGIN_ATTEMPT,
-    }
-}
-
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
 export const setCurrentUserAction = (userInfo) => {
     return {
@@ -50,32 +43,6 @@ export const setCurrentUserAndLoginAction = (userInfo) => {
         dispatch(appNotLoadingAction())
     }
 }
-
-export const SET_USER_ID = 'SET_USER_ID'
-export const setUserIDAction = (userID) => {
-    return {
-        type: SET_USER_ID,
-        payload: {
-            userID
-        }
-    }
-}
-
-
-export const loginWithUserIDAction = (userID) => {
-    return (dispatch) => {
-        dispatch(setUserIDAction(userID))
-        dispatch(loginAction())
-    }
-}
-
-// export const setCurrentUserAndLoginAction = (userInfo) => {
-//     debugger
-//     return (dispatch) => {
-//         dispatch(setCurrentUserAction(userInfo))
-//         dispatch(loginAction())
-//     }
-// }
 
 export const ADD_MESSAGE = 'ADD_MESSAGE'
 export const addMessageAction = (messageInfo) => {

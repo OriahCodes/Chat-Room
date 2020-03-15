@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutAction } from '../../../actions/actions'
+import React from 'react';
+import { useSelector } from 'react-redux';
 import './loadingStatus.css'
 //components
 import Spinner3 from '../../spinners/spinner3/Spinner3'
@@ -8,8 +7,6 @@ import Spinner3 from '../../spinners/spinner3/Spinner3'
 export default function LoadingStatus() {
     const beingSent = useSelector(state => state.beingSent)
     const beingDeleted = useSelector(state => state.beingDeleted)
-
-    const dispatch = useDispatch()
 
     return (
         <div id="loading-status-container">

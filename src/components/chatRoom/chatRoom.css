@@ -5,11 +5,12 @@
 
     #chatRoom-title-container>i{
         font-size: 50px;
-        padding: var(--secondary-padding)
+        padding: var(--secondary-padding);
     }
 
     #chatRoom-title-container>span{
         font-size: 50px;
+        color: var(--secondary-text-color)
     }
 
     #logout-button{
@@ -19,7 +20,8 @@
     }
 
 .welcome{
-    font-size: 20px
+    font-size: 20px;
+    color: var(--secondary-text-color)
 }
 
 

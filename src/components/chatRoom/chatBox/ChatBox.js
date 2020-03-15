@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect, Fragment } from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadMessageAction, updateMessageAction } from '../../../actions/actions'
+import { loadMessageAction } from '../../../actions/actions'
 import { animateScroll } from "react-scroll";
 import './chatBox.css'
 
@@ -21,7 +21,6 @@ export default function ChatBox() {
     }, [])
 
     function addMessageListener() {
-        console.log("test1")
         db.collection('messages').orderBy('timestamp')
             .onSnapshot({ includeMetadataChanges: true }, snapshot => { //realtime listener
                 for (let doc of snapshot.docs) {
